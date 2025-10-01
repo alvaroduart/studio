@@ -1,12 +1,12 @@
 "use client";
 
-import { Button } from '@/components/ui/button';
-import AddTaskModal from './AddTaskModal';
-import type { Task } from '@/types/kanban';
-import { Plus, Grip } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import AddTaskModal from "./AddTaskModal";
+import type { Task } from "@/types/kanban";
+import { Plus, Grip } from "lucide-react";
 
 interface KanbanHeaderProps {
-  onAddTask: (task: Omit<Task, 'id'>) => void;
+  onAddTask: (task: Omit<Task, "id">) => void;
 }
 
 export default function KanbanHeader({ onAddTask }: KanbanHeaderProps) {
