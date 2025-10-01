@@ -1,18 +1,11 @@
 version = 1
 
+# Exclui tudo, menos a pasta cli/
 exclude_patterns = [
-  "**/*",         # Exclui todos os arquivos
-  "!cli/**/*"     # Inclui apenas os arquivos dentro da pasta cli/
+  "**/*",       # exclui tudo
+  "!cli/**/*"   # inclui apenas a pasta cli
 ]
 
 [[analyzers]]
 name = "javascript"
 enabled = true
-
-  [analyzers.meta]
-  environment = ["nodejs"]
-  ecma_version = "2020"
-  module_system = "commonjs"
-  plugins = ["react"]
-  style_guide = "airbnb"
-  dialect = "typescript"
