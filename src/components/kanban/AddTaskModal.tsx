@@ -35,19 +35,26 @@ import type { Task, Priority } from "@/types/kanban";
 import { PlusCircle } from "lucide-react";
 
 const taskSchema = z.object({
-  title: z.string().min(3, { message: "O título deve ter pelo menos 3 caracteres." }),
+  title: z
+    .string()
+    .min(3, { message: "O título deve ter pelo menos 3 caracteres." }),
   description: z.string().optional(),
-  priority: z.enum(["Alta", "Média", "Baixa"], { required_error: "A prioridade é obrigatória." }),
+  priority: z.enum(["Alta", "Média", "Baixa"], {
+    required_error: "A prioridade é obrigatória.",
+  }),
 });
 
 type TaskFormValues = z.infer<typeof taskSchema>;
 
 interface AddTaskModalProps {
-  onAddTask: (task: Omit<Task, 'id'>) => void;
+  onAddTask: (task: Omit<Task, "id">) => void;
   children: React.ReactNode;
 }
 
-export default function AddTaskModal({ onAddTask, children }: AddTaskModalProps) {
+export default function AddTaskModal({
+  onAddTask,
+  children,
+}: AddTaskModalProps) {
   const [open, setOpen] = useState(false);
   const form = useForm<TaskFormValues>({
     resolver: zodResolver(taskSchema),
@@ -75,11 +82,15 @@ export default function AddTaskModal({ onAddTask, children }: AddTaskModalProps)
         <DialogHeader>
           <DialogTitle>Adicionar Nova Tarefa</DialogTitle>
           <DialogDescription>
-            Preencha os detalhes da tarefa. A nova tarefa será adicionada à coluna "A Fazer".
+            Preencha os detalhes da tarefa. A nova tarefa será adicionada à
+            coluna "A Fazer".
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 py-4">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-4 py-4"
+          >
             <FormField
               control={form.control}
               name="title"
@@ -87,7 +98,10 @@ export default function AddTaskModal({ onAddTask, children }: AddTaskModalProps)
                 <FormItem>
                   <FormLabel>Título</FormLabel>
                   <FormControl>
-                    <Input placeholder="Ex: Desenvolver a página principal" {...field} />
+                    <Input
+                      placeholder="Ex: Desenvolver a página principal"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -116,7 +130,10 @@ export default function AddTaskModal({ onAddTask, children }: AddTaskModalProps)
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Prioridade</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Selecione a prioridade" />
