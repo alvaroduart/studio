@@ -5,4 +5,4 @@ name = "javascript"
 enabled = true
 
   [analyzers.meta]
-  runtime_version = "18"  # Node.js version
+  include_paths = ["studio/"]  # só analisa a pasta cli
