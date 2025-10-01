@@ -1,11 +1,35 @@
 version = 1
 
-# Exclui tudo, menos a pasta cli/
+# Diretórios que devem ser ignorados (opcional)
 exclude_patterns = [
-  "**/*",       # exclui tudo
-  "!cli/**/*"   # inclui apenas a pasta cli
+  "node_modules/**",
+  ".next/**",
+  "out/**",
+  "dist/**",
+  "build/**",
 ]
 
 [[analyzers]]
 name = "javascript"
+enabled = true
+
+  [analyzers.meta]
+  # Detecta automaticamente JS/TS/React
+  dialect = "typescript"
+  runtime = "nodejs"
+
+[[analyzers]]
+name = "docker"
+enabled = true
+
+[[analyzers]]
+name = "secrets"
+enabled = true
+
+[[analyzers]]
+name = "test-coverage"
+enabled = true
+
+[[transformers]]
+name = "prettier"
 enabled = true
